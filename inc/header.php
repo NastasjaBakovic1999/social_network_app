@@ -21,3 +21,4 @@ include "function/init.php";
 	<li><a href="register.php">Register</a></li>
 </ul>
 	
+<hr>
