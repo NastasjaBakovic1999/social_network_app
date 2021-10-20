@@ -1,5 +1,3 @@
-//ostvarujemo konekciju sa bazom
-
 <?php
 
 $hostname="localhost";
@@ -7,7 +5,7 @@ $username="root";
 $password="";
 $database="social_network";
 
-$conn=mysqli_connect(hostname:$localhost, username:$username, password:$password, database:$database);
+$conn=mysqli_connect(hostname:$hostname, username:$username, password:$password, database:$database);
 
 function escape($string){
 	global $conn;
@@ -25,5 +23,3 @@ function confirm($result){
 		die("QUERY FAILED" . mysqli_error($conn));
 	}
 }
-
-?>
