@@ -1,6 +1,6 @@
 <div class="footer">
 	<hr>
-	<p>&Ccopy Copyright -2021</p>
+	<p>&copy Copyright - 2021</p>
 </div>
 
 </div>
