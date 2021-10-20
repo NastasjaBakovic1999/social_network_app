@@ -1,24 +1,8 @@
 <?php include "inc/header.php" ?>
 
 <?php
-
-if($_SERVER['REQUEST_METHOD']=='POST'){
-	$first_name=escape($_POST['first_name']);
-	$last_name=escape($_POST['last_name']);
-	$username=escape($_POST['username']);
-	$email=escape($_POST['email']);
-	$password=escape($_POST['password']);
-	$password=password_hash($password,PASSWORD_DEFAULT);
-
-	$sql="INSERT INTO users(first_name, last_name,username,profile_image,email,password) ";
-	$sql.="VALUES ('$first_name', '$last_name', '$username', 'uploads/default.jpg', '$email', '$password')";
-
-	confirm(query($sql));
-	set_message("You have been successfully registrated! Please log in!");
+	validate_user_registration();
 	display_message();
-
-}
-
 ?>
 
 <form method="POST">
