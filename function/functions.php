@@ -122,3 +122,54 @@ function create_user ($first_name, $last_name,$username, $email, $password){
 	redirect("login.php");
 
 }
+
+function validate_user_login(){
+	$errors=[];
+
+	if($_SERVER['REQUEST_METHOD']=='POST'){
+		$email=clean($_POST['email']);
+		$password=clean($_POST['password']);
+
+		if(empty($email)){
+			$errors[]="Email field cannot be empty!";
+		}
+
+		if(empty($password)){
+			$errors[]="Password field cannot be empty!";
+		}
+
+		if(empty($errors)){
+			if(user_login($email, $password)){
+				redirect(location:"index.php");
+			} else {
+				$errors[]="Your email or password is incorrect, please try again";
+			}
+		}
+
+		if(!empty($errors)){
+			foreach($errors as $error){
+				echo '<div class="alert">' . $error . '</div>';
+			}
+		}
+	}
+}
+ 
+function user_login($email, $password){
+	$password=filter_var($password, FILTER_SANITIZE_STRING);
+	$email=filter_var($email, FILTER_SANITIZE_EMAIL);
+
+	$query="SELECT * FROM users WHERE email='$email'";
+	$result=query($query);
+
+	if($result->num_rows>0){
+		$data = $result->fetch_assoc();
+		if(password_verify($password, $data['password'])){
+			$_SESSION['email']=$email;
+			return true;
+		} else {
+			return false;
+		}
+	}else {
+		return false;
+	}
+}

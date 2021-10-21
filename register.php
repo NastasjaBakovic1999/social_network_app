@@ -1,9 +1,12 @@
 <?php include "inc/header.php" ?>
 
+<div>
 <?php
 	validate_user_registration();
 	display_message();
-?>
+?>	
+</div>
+
 
 <form method="POST">
 	<input type="text" name="first_name" placeholder="First Name" required>
