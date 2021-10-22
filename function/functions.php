@@ -173,3 +173,25 @@ function user_login($email, $password){
 		return false;
 	}
 }
+
+function get_user($id=NULL){
+	if($id!=NULL){
+		$query="SELECT * FROM users WHERE id=" .  $id;
+		$result=query($query);
+
+		if($result->num_rows>0){
+			return $result->fetch_assoc();
+		}else {
+			return "user not found";
+		}
+	} else {
+		$query="SELECT * FROM users WHERE email='" . $_SESSION['email'] . " ' ";
+		$result=query($query);
+
+		if($result->num_rows>0){
+			return $result->fetch_assoc();
+		}else {
+			return "user not found";
+		}
+	}
+}
