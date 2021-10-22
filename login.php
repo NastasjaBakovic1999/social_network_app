@@ -1,4 +1,7 @@
-<?php include "inc/header.php"; ?>
+<?php 
+include "inc/header.php";
+ login_check_pages();
+?>
 
 <div>
 	<?php 

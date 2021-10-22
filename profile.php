@@ -1,4 +1,11 @@
-<?php include "inc/header.php" ?>
+<?php 
+include "inc/header.php";
+user_restrictions();
+?>
+
+<div>
+	<?php display_message(); ?>
+</div>
 
 <?php 
 $user=get_user();

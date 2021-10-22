@@ -241,3 +241,15 @@ function user_profile_image_upload(){
 		redirect(location:"profile.php");
 	}
 }
+
+function user_restrictions(){
+	if(!isset($_SESSION['email'])){
+		redirect(location:"login.php");
+	}
+}
+
+function login_check_pages(){
+	if(isset($_SESSION['email'])){
+		redirect(location:"index.php");
+	}
+}

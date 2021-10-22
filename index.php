@@ -1,4 +1,6 @@
-<?php include "inc/header.php" ?>
+<?php 
+include "inc/header.php"; 
+?>
 
 <?php
 if(isset($_SESSION['email'])) : ?>
@@ -11,6 +13,12 @@ if(isset($_SESSION['email'])) : ?>
 
 <?php else : ?>
 	
+	<div class="homepage">
+		<h1>Welcome to My Social Network</h1>
+		<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo distinctio voluptatem ipsa commodi possimus sapiente architecto! Harum perferendis in maiores quas eum saepe optio tempore nam. Vitae maiores inventore corporis?</p>
+
+		<h2>Click <a href="login.php">here</a> to login!</h2>
+	</div>
 
 <?php endif; ?>
 
