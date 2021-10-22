@@ -18,6 +18,7 @@ if(isset($_SESSION['email'])) : ?>
 		<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo distinctio voluptatem ipsa commodi possimus sapiente architecto! Harum perferendis in maiores quas eum saepe optio tempore nam. Vitae maiores inventore corporis?</p>
 
 		<h2>Click <a href="login.php">here</a> to login!</h2>
+		<img src="css/img/social.jpg" alt="">
 	</div>
 
 <?php endif; ?>
