@@ -253,3 +253,49 @@ function login_check_pages(){
 		redirect(location:"index.php");
 	}
 }
+
+function create_post(){
+	$errors=[];
+
+	if($_SERVER['REQUEST_METHOD']=="POST"){
+		$post_content=clean($_POST['post_content']);
+
+		if(strlen($post_content)>200){
+			$errors[]="Your post content is too long";
+		}
+
+		if(!empty($errors)){
+			foreach($errors as $error){
+				echo "<div class='alert'>" . $error . "</div>";
+			}
+		} else {
+			$post_content=filter_var($post_content, FILTER_SANITIZE_STRING);
+			$post_content=escape($post_content);
+
+			$user=get_user();
+			$user_id=$user['id'];
+
+			$sql="INSERT INTO posts(user_id, content, likes)";
+			$sql.="VALUES($user_id, '$post_content', 0)";
+
+			confirm(query($sql));
+			set_message("You added a post!");
+			redirect(location:"index.php");
+		}
+	}
+}
+
+function fetch_all_posts(){
+	$query="SELECT * FROM posts ORDER BY created_time DESC";
+	$result=query($query);
+
+	if($result->num_rows>0){
+		while($row=$result->fetch_assoc()){
+			$user=get_user($row['user_id']);
+			  echo "<div class='post'><p><img src='" . $user['profile_image'] . "' alt=''><i><b>" . $user['first_name'] . " " . $user['last_name'] . "</b></i></p>
+                    <p>" . $row['content'] . "</p>
+                    <p><i>Date: <b>" . $row['created_time'] . "</b></i></p>
+                    <div class='likes'>Likes: <b id='likes_".$row['id']."'>" . $row['likes'] . "</b><button onclick='like_post(this)' data-post_id='".$row['id']."'>LIKE</button></div></div>";
+        }
+		}
+	}
